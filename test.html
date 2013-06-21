@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Army List</title>
+	<link rel="stylesheet" href="main.css"  type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="print.css" media="print">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+    <script src="armylist_t.js" type="text/javascript"></script> 
+    <script src="data_weapons.js" type="text/javascript"></script> 
+    <script type="text/javascript">
+        var units = new Array();
+        var unitCache = "";
+        var armylistContent = JSON.parse(dumpArmyAsText());
+
+        function updateHTML(updateFlag) {
+            document.getElementById("armylist")
+                .innerHTML = updateArmyList(updateFlag);
+            hideUnitWpn(toBoolean(localStorage.getItem("iald.displayWeapons")));
+            hideLoadbox(toBoolean(localStorage.getItem("iald.displayEdit")));
+        }
+
+        function registerEvents() {
+            $("button")
+                .click(performClick);
+            $("#wbtn")
+                .click(tglWeapons);
+            $("#lbtn")
+                .click(performLoadClick);
+        }
+
+        function performClick() {
+            var rebuild = true;
+            var id = $(this).attr('id');
+            if(id == "reset") {
+                armylistContent = JSON.parse(dumpArmyAsText());
+                localStorage.setItem("iald.army", dumpArmyAsText());
+                rebuild = true;
+            } else if(id == "download") {
+                onDownload();
+            } else {
+                var index = parseInt(id.substring(4));
+                if(units.length > 0)
+                    units[index].alive = !units[index].alive;
+                localStorage.setItem("iald.army", JSON.stringify(units));
+/*
+                console.log("Button"+index);
+                console.log(document.getElementById("act"+index));
+
+                document.getElementById("act"+index)
+                    .setAttribute("class", (! units[index].alive) ? 'active' : 'inactive');
+*/
+            }
+            updateHTML(rebuild);
+            registerEvents();
+        }
+
+        function performLoadClick() {
+            display = !toBoolean(localStorage.getItem("iald.displayEdit"));
+            localStorage.setItem("iald.displayEdit", display.toString());
+            if(!display) {
+                armylistContent = JSON.parse(document.getElementById("armyImport").value);
+                localStorage.setItem("iald.army", JSON.stringify(armylistContent));
+                updateHTML(true);
+            } else
+                updateHTML(false);
+            registerEvents();
+        }
+
+        $(document)
+            .ready(function () {
+                if(localStorage.getItem("iald.displayWeapons") == null)
+                    localStorage.setItem("iald.displayWeapons", "true");
+                if(localStorage.getItem("iald.displayEdit") == null)
+                    localStorage.setItem("iald.displayEdit", "false");
+                data = localStorage.getItem("iald.army");
+                if(data == null)
+                    data = dumpArmyAsText();
+                armylistContent = JSON.parse(data);
+                updateHTML(true);
+                registerEvents();
+            });
+
+        function hideUnitWpn(visible) {
+            if(visible) {
+                $(".weapondata")
+                    .show();
+                document.getElementById("wbtn")
+                    .innerHTML = "hide wpn";
+            } else {
+                $(".weapondata")
+                    .hide();
+                document.getElementById("wbtn")
+                    .innerHTML = "show wpn";
+            }
+            var elements = document.getElementsByClassName("unitWpn");
+            for(var index = 0; index < elements.length; index++)
+                elements[index].hidden = visible;
+        }
+
+        function hideLoadbox(visible) {
+            if(visible) {
+                //                console.log(document.getElementById("loadbox"));
+                $("#loadbox").show();
+                document.getElementById("lbtn")
+                    .innerHTML = "update army";
+
+            } else {
+                $("#loadbox").hide();
+                document.getElementById("lbtn")
+                    .innerHTML = "edit army";
+            }
+        }
+
+        function toBoolean(a) {
+            return String(a).toLowerCase() === 'true';
+        }
+
+        function tglWeapons() {
+            var display = !toBoolean(localStorage.getItem("iald.displayWeapons"));
+            localStorage.setItem("iald.displayWeapons", display.toString());
+            hideUnitWpn(display);
+        }
+
+        function tglLoad() {
+            var display = !toBoolean(localStorage.getItem("iald.displayEdit"));
+            localStorage.setItem("iald.displayEdit", display.toString());
+            hideLoadbox(display);
+        }
+
+        function loadUnits() {
+            return armylistContent;
+        }
+    </script>
+</head>
+
+<body>
+<div id="armylist">
+<!-- create this dynamical -->
+</div>
+
+<!-- footer -->
+<div id = "footer">
+    <span title="
+== TO DO: ==
+improve army list input
+get unit data from somewhere
+support combat groups?
+">!WORK IN PROGRESS!</Span><br>
+	This site was done according to the great tutorials at <a href="http://thecodeplayer.com/">thecodeplayer.com</a><br>
+    This is an army list tool for <a href = "http://www.infinitythegame.com/infinity/">infinity the game</a>, made by bdornauf at gmail dot com.  
+</div>
+</body>
+</html>

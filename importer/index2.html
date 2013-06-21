@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>IALD data importer</title>
+
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+    <script type="text/javascript">
+        var url = "http://anyplace.it/ia/ia.html?list=eyJwY2FwIjoyMDAsImZhY3Rpb24iOiJZdSBKaW5nIiwic2VjdG9yaWFsIjoiSmFwYW5lc2UgU2VjdG9yaWFsIEFybXkiLCJpbmNsdWRlTWVyY3MiOmZhbHNlLCJtb2RlbHMiOlt7ImlzYyI6IlNhaXRvIFRvZ2FuIiwiY29kZSI6IkRlZmF1bHQiLCJyZWNvcmRpZCI6Ijg4NzQ1MDg5NTUwNTAyNjAwIn0seyJpc2MiOiJEb21hcnUgQnV0YWkiLCJjb2RlIjoiTGlldXRlbmFudCIsInJlY29yZGlkIjoiNTk2MTEzNTgxNDQzMjA1NDAifSx7ImlzYyI6IktlaXNvdHN1IiwiY29kZSI6IkRlZmF1bHQiLCJyZWNvcmRpZCI6IjIzMDg5OTYyOTE4MzExMzU2In0seyJpc2MiOiJLZWlzb3RzdSIsImNvZGUiOiJEZWZhdWx0IiwicmVjb3JkaWQiOiI4MjQ3OTUwMjU2MzM2NDgwMCJ9LHsiaXNjIjoiS2Vpc290c3UiLCJjb2RlIjoiSE1HIiwicmVjb3JkaWQiOiIxNzgzMDA4OTU0OTUzNDAyMiJ9LHsiaXNjIjoiS2Vpc290c3UiLCJjb2RlIjoiRGVmYXVsdCIsInJlY29yZGlkIjoiODAxMjk5NzQ5NjQwNzQ3ODAifSx7ImlzYyI6IktlaXNvdHN1IiwiY29kZSI6Ik1pc3NpbGUiLCJyZWNvcmRpZCI6Ijk4OTg2MTA4MzIxNjk2NTIifSx7ImlzYyI6IktlaXNvdHN1IiwiY29kZSI6IlBhcmFtZWRpYyIsInJlY29yZGlkIjoiMzcxMTY0MDE1MDI4NjI1ODAifSx7ImlzYyI6Ik5pbmphcyIsImNvZGUiOiJTbmlwZXIiLCJyZWNvcmRpZCI6IjY5MDUyMDgzNzQzNzM2MTQwIn1dLCJsaXN0SWQiOiI2MzY0NTg5NDU0NjA2MTc1MCIsImlkIjoiNjM2NDU4OTQ1NDYwNjE3NTAiLCJsaXN0TmFtZSI6IktlaXNvdHN1IGFuZCBzYWl0byIsImRhdGVNb2QiOiIxMzcxNjczOTUzMjY0IiwiZ3JvdXBNYXJrcyI6W10sImNvbWJhdEdyb3VwU2l6ZSI6MTAsInNwZWNvcCI6bnVsbCwibWVyY2VuYXJ5RmFjdGlvbnMiOm51bGx9";
+
+        alert( JSON.stringify( JSON.parse(
+            decode_base64 (
+                unescape(
+                    url.replace(/^.*list=/,'')
+                ).
+                    replace(/[%]../g,'').
+                    replace(/_/g,'/').
+                    replace(/-/g,'+').
+                    replace(/[.:]/g,'=').
+                    replace(/[^a-zA-Z0-9+\/=]/g,'')
+            )
+        ), null, "    "));
+
+
+
+
+function decode_base64(s) {
+    var e={},i,k,v=[],r='',w=String.fromCharCode;
+    var n=[[65,91],[97,123],[48,58],[43,44],[47,48]];
+
+    for(z in n){for(i=n[z][0];i<n[z][1];i++){v.push(w(i));}}
+    for(i=0;i<64;i++){e[v[i]]=i;}
+
+    for(i=0;i<s.length;i+=72){
+    var b=0,c,x,l=0,o=s.substring(i,i+72);
+         for(x=0;x<o.length;x++){
+                c=e[o.charAt(x)];b=(b<<6)+c;l+=6;
+                while(l>=8){r+=w((b>>>(l-=8))%256);}
+         }
+    }
+    return r;
+    }
+
+
+
+    </script>
+
+</head>
+
+<body>
+<pre><code id="json">
+something is not working :-(
+</code></pre>
+
+</body>
+</html>

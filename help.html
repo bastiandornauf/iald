@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>IALD - help</title>
+	<link rel="stylesheet" href="main.css"  type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="print.css" media="print">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+</head>
+
+<body>
+    <div id = "armylist">
+<a href="index.html" id="help">back to IALD</a>
+
+
+<h1>IALD &mdash; HELP</h1>
+
+I TEST THIS LINK: <a href="http://www.bastian-dornauf.de/iald/index.html?import=aleph&list=eyJwY2FwIjoyMDAsImZhY3Rpb24iOiJZdSBKaW5nIiwic2VjdG9yaWFsIjoiSmFwYW5lc2UgU2VjdG9yaWFsIEFybXkiLCJpbmNsdWRlTWVyY3MiOmZhbHNlLCJtb2RlbHMiOlt7ImlzYyI6IlNhaXRvIFRvZ2FuIiwiY29kZSI6IkRlZmF1bHQiLCJyZWNvcmRpZCI6Ijg4NzQ1MDg5NTUwNTAyNjAwIn0seyJpc2MiOiJEb21hcnUgQnV0YWkiLCJjb2RlIjoiTGlldXRlbmFudCIsInJlY29yZGlkIjoiNTk2MTEzNTgxNDQzMjA1NDAifSx7ImlzYyI6IktlaXNvdHN1IiwiY29kZSI6IkRlZmF1bHQiLCJyZWNvcmRpZCI6IjIzMDg5OTYyOTE4MzExMzU2In0seyJpc2MiOiJLZWlzb3RzdSIsImNvZGUiOiJEZWZhdWx0IiwicmVjb3JkaWQiOiI4MjQ3OTUwMjU2MzM2NDgwMCJ9LHsiaXNjIjoiS2Vpc290c3UiLCJjb2RlIjoiSE1HIiwicmVjb3JkaWQiOiIxNzgzMDA4OTU0OTUzNDAyMiJ9LHsiaXNjIjoiS2Vpc290c3UiLCJjb2RlIjoiRGVmYXVsdCIsInJlY29yZGlkIjoiODAxMjk5NzQ5NjQwNzQ3ODAifSx7ImlzYyI6IktlaXNvdHN1IiwiY29kZSI6Ik1pc3NpbGUiLCJyZWNvcmRpZCI6Ijk4OTg2MTA4MzIxNjk2NTIifSx7ImlzYyI6IktlaXNvdHN1IiwiY29kZSI6IlBhcmFtZWRpYyIsInJlY29yZGlkIjoiMzcxMTY0MDE1MDI4NjI1ODAifSx7ImlzYyI6Ik5pbmphcyIsImNvZGUiOiJTbmlwZXIiLCJyZWNvcmRpZCI6IjY5MDUyMDgzNzQzNzM2MTQwIn1dLCJsaXN0SWQiOiI2MzY0NTg5NDU0NjA2MTc1MCIsImlkIjoiNjM2NDU4OTQ1NDYwNjE3NTAiLCJsaXN0TmFtZSI6IktlaXNvdHN1IGFuZCBzYWl0byIsImRhdGVNb2QiOiIxMzcxNjczOTUzMjY0IiwiZ3JvdXBNYXJrcyI6W10sImNvbWJhdEdyb3VwU2l6ZSI6MTAsInNwZWNvcCI6bnVsbCwibWVyY2VuYXJ5RmFjdGlvbnMiOm51bGx9">import army list via GET parameter/URL</a>
+
+<div class="unit">
+<h1 class="help">Infinity Army List Display</h1>
+
+<h2 class="help">What is IALD?</h2>
+<p class="help">The main purpose of this web-based tool is to display army lists during a game of infinity on a mobile device like a smartphone or tablet.</p>
+
+<h2 class="help">Requirements?</h2>
+<p class="help">IALD makes use of &quot;modern&quot; web techniques like HTML5, CSS3 and javascript. I have tested it on Mac Chrome, Mac Safari, iOS Chrome, iOS Safari in recent versions. I have reason to believe it works in most modern browsers.</p>
+
+<h2 class="help">Is this final?</h2>
+<p class="help">No. IALD is in beta phase, as I have not really tested it to the bones. Please be aware that this means that the tool can be subject of changes, that data you entered might get lost and that the tool could be unavailable some times.</p>
+
+<h2 class="help">What&apos;s next?</h2>
+<p class="help">I dont know, probably some bugfixes if needed. Maybe I'll include special cases in break point calculation like baggage - but I'm not sure if this is a) necessary b) possible within reasonable effort. I'll check that out at least.</p>
+</div>
+
+<div class="unit">
+<h1 class="help">How to use IALD?</h1>
+
+<h2 class="help">What can I do?</h2>
+<p class="help">User interface concept is simple. There are <button id="download">buttons</button> that trigger functions of the IALD and <a href="#">links</a> that switch to other web pages, mostly the infinity wiki.</p>
+
+<h2 class="help">Getting started</h2>
+<p class="help">When you open IALD for the first time its loaded with an example army list.</p>
+<p class="help">When you click the numbered buttons in front of the units you toggle their status: active or out of action. When the points of inactive units reach 60% of the total a warning is displayed that you are in retreat.</p>
+<p class="help">You can toggle between a verbose output of weapon data or a simple list with [show/hide wpn]</p>
+<p class="help">[edit army] opens the army editor (its really just a textbox), see below for more on that.</p>
+
+<h2 class="help">Will it remember my data?</h2>
+<p class="help">IALD makes use of the HTML5 storage concept and stores data on your browser. <a href="http://diveintohtml5.info/storage.html">Go here for more information.</a></p>
+</div>
+
+<div class="unit">
+<h1 class="help">Import an army</h1>
+<h2 class="help">from ia aleph</h2>
+<p class="help">Export the army list in aleph. Mark and copy the list (all that within those two lines).</p>
+<p class="help">Go to IALD and open the army editor with a click on [edit army].</p>
+<p class="help">Paste into the edit field, if everything was done correctly you should have something like ...<code class="block"> Sakiel Viral (26|0)
+ Kamael Combi (12|0)
+ Kamael Combi (12|0)
+ Makaul Swarm (18|0)
+ Makaul Flamer (15|0)
+ Makaul Flamer (15|0)
+ Ectros Lt (50|0)
+ Auxiliar HMG (25|1)
+ Auxiliar HMG (25|1)</code> </p>
+<p class="help">Click on [import] and the army list should get imported. Units not found appear as head lines. If units are not found there is something wrong (or needs an update) so you can help if you report this to me!</p>
+<p class="help">You can close the editor using [update].</p>
+<h2 class="help">from other army list builder</h2>
+<p class="help">Sorry, this is just not possible yet</p>
+<p class="help">But you can still edit the army manually ... see below for instructions!</p>
+
+
+</div>
+
+<div class="unit">
+<h1 class="help">Edit your army</h1>
+
+<h2 class="help">How can I enter my list manually?</h2>
+<p class="help">In the text area you can edit the data but I advise to copy&amp;paste into this field from a text editor with code highlighting and do the editing there.</p>
+<p class="help">The [reset] button will reload the example army.</p>
+<p class="help">The [download] button should allow you to download the army as text file. I know that this does not work on (most?) mobile devices. Maybe I remove this feature since copy&amp;paste is the more convenient method.</p>
+<p class="help">The [update] button will close the army editor and update the displayed army list. Note that when you enter data that is invalidly formatted you will lose the data.</p>
+
+
+<h2 class="help">This looks like gibberish code!?</h2>
+<p class="help">You can simply copy the data from the example army list and just change the unit relevant stuff, I guess even without any coding knowledge you have a good chance to get this right. But I will explain exactly how the data is formatted in case you want to know in the next section.</p>
+
+<h2 class="help">But editing on the phone is horrible!</h2>
+<p class="help">Thats really true. I hate it too. And since the browser does only store a single army list it really is ennoying to re-edit all this complicated each time you want to play another of your lists. So I have a different work-flow.</p>
+<p class="help">I edit the army list data in a text editor with syntax highlighting (on Mac I use <a href="http://www.sublimetext.com/2">sublime</a>, textwrangler or fraise, on Windows I used <a href="http://notepad-plus-plus.org/">notepad++</a>). So I can save all the lists I want to keep. When I want to load it into IALD I copy&amp;paste it from the editor into the army editor. To get it on my tablet or phone I simply email the list to myself and copy&amp;paste from the email client.</p>
+</div>
+
+<div class="unit">
+<h1 class="help">This looks like gibberish code!?</h1>
+<h2 class="help">What is all this?</h2>
+<p class="help">The army data has to be entered as <a href="http://www.json.org/">JSON</a>, let's say it is a strictly formatted way to write data. Text has to be written in quotes <code>"some text"</code>, numbers can be written plain. The army list is an <em>array</em> ... it has to be written in square brackets <code>[]</code> and and there has to be a comma <code>,</code> between all elements.</p>
+<p class="help">In this array you list the units and the unit data is written as an <em>object</em>, that is a collection of key&ndash;value pairs written in curly brackets <code>{}</code>. An object can have any number of those and they have to be separated by comma <code>,</code>. You have to write the key first, then the separator <code>:</code> and at last the value.</p>
+<h2 class="help">And how do I enter the unit data exactly?</h2>
+<p class="help">Lets walk through the first unit of the example list together:</p>
+<p class="help">First (although the order of the key-value pairs does not matter) I define the name (specifier) of the unit. 
+<code class="block">{
+    "spec": "Sakiel - Viral",</code></p>
+<p class="help">With the next two lines I define the unit as regular and impetuous. An irregular unit would be <code>"regular":  false</code>.
+<code class="block">    "regular": true,
+    "impetuous": true,
+</code></p>
+<p class="help">Type, point cost and support weapons cost is set like this
+<code class="block">    "type": "LI",
+    "pts": 26,
+    "swc": 0,
+</code></p>
+<p class="help">Next you can specify the data from the stat block.
+<code class="block">    "mov": "4-4",
+    "cc": 14,
+    "bs": 12,
+    "ph": 11,
+    "wip": 13,
+    "arm": 2,
+    "bts": 0,
+    "w": 1,
+</code></p>
+
+<p class="help">The props line is a text line of comma separates items and should list all special skills and equipment of the unit. Every item will be made into a link to the infinity wiki. Note that I do not check if that wiki page does exist.
+<code class="block">"props": "Cube, Fireteam: Tohaa, Impetuous, Symbiont Armour, V: Courage",</code></p>
+
+<p class="help">Weapons are defined and handled just like unit properties. The only difference here is that with verbose weapon display activated IALD tries to look up the weapon and display detailed stats including damage, burst, ranges and all other important data. If the weapon is unknown you probably have made a typo. 
+<code class="block">"weapons": "Viral Combi Rifle, Swarm Grenades, Pistol, Knife",</code></p>
+
+<p class="help">and finally we define that the unit is (still) alive, not out of action. Note that the last line does not have a trailing comma.
+<code class="block">    "alive": true
+}</code></p>
+
+<h2 class="help">Can I set different combat groups?</h2>
+<p class="help">Well, sort of. You can add head lines to the army list, between units. In the example list I used this to add some logical structure to the list, but you could easily add head lines like "combat group 1" too. To add a head line just add a simple text inplace of an (unit) object in the army array. But the IALD does not do anything with this separator lines other than displaying them.
+    <code class="block">[
+    "combat group 1",
+    {
+        "spec": "Keisetsu - Combi",</code></p>
+
+<h2 class="help">What is with units that have two stat blocks?</h2>
+<p class="help">Yes. And you can do that here too. First you can add a small header in front of the stat block by defining the header key. So can specify what the defined stat block is for. <code class="block">"header": "active symbiont armor",</code></p>
+
+<p class="help">Next you have to add a second stat block. Its a key that holds another, nested object with all the necessary keys &mdash; you can even add a second header here.<code class="block">"secondStatLine": {
+    "header": "inactive symbiont armor",
+    "mov": "4-4",
+    "bs": 12,
+    "cc": 14,
+    "ph": 11,
+    "wip": 13,
+    "arm": 0,
+    "bts": 0,
+    "w": 1
+},</code></p>
+
+<div class="unit">
+    <p class="help">Please: if you do not understand how to enter your army data know - contact me. I would love to improve this documentation and if you have trouble with it you are a valuable helper for me. I assume the army entry will have to stay a while like it is know since adding a library of all units will take some time. </p>
+    <p class="help">All other feedback is very valuable for me too and highly appreciated.</p>
+</div></div>
+</div>
+
+    <!-- footer -->
+    <!--#include virtual="./footer.html" -->
+    </div>
+</body>
+</html>

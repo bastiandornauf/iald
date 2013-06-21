@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>IALD beta - infinity army list display</title>
+	<link rel="stylesheet" href="main.css"  type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="print.css" media="print">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script>
+function dumpArmyAsText() {
+    return '[\r\n  \"triad 1\",\r\n  {\r\n    \"spec\": \"Sakiel - Viral\",\r\n    \"header\": \"active symbiont armor\",\r\n    \"regular\": true,\r\n    \"impetuous\": true,\r\n    \"type\": \"LI\",\r\n    \"pts\": 26,\r\n    \"swc\": 0,\r\n    \"mov\": \"4-4\",\r\n    \"cc\": 14,\r\n    \"bs\": 12,\r\n    \"ph\": 11,\r\n    \"wip\": 13,\r\n    \"arm\": 2,\r\n    \"bts\": 0,\r\n    \"w\": 1,\r\n    \"props\": \"Cube, Fireteam: Tohaa, Impetuous, Symbiont Armour, V: Courage\",\r\n    \"weapons\": \"Viral Combi Rifle, Swarm Grenades, Pistol, Knife\",\r\n    \"secondStatLine\": {\r\n      \"header\": \"inactive symbiont armor\",\r\n      \"mov\": \"4-4\",\r\n      \"bs\": 12,\r\n      \"cc\": 14,\r\n      \"ph\": 11,\r\n      \"wip\": 13,\r\n      \"arm\": 0,\r\n      \"bts\": 0,\r\n      \"w\": 1\r\n    },\r\n    \"alive\": true\r\n  },\r\n  {\r\n    \"spec\": \"Kamael - Combi\",\r\n    \"regular\": true,\r\n    \"impetuous\": false,\r\n    \"type\": \"LI\",\r\n    \"pts\": 12,\r\n    \"swc\": 0,\r\n    \"mov\": \"4-4\",\r\n    \"cc\": 13,\r\n    \"bs\": 11,\r\n    \"ph\": 11,\r\n    \"wip\": 13,\r\n    \"arm\": 1,\r\n    \"bts\": 0,\r\n    \"w\": 1,\r\n    \"props\": \"Cube, Fireteam: Tohaa\",\r\n    \"weapons\": \"Combi Rifle, Pistol, Knife\",\r\n    \"alive\": true\r\n  },\r\n  {\r\n    \"spec\": \"Kamael - Combi\",\r\n    \"regular\": true,\r\n    \"impetuous\": false,\r\n    \"type\": \"LI\",\r\n    \"pts\": 12,\r\n    \"swc\": 0,\r\n    \"mov\": \"4-4\",\r\n    \"bs\": 13,\r\n    \"cc\": 11,\r\n    \"ph\": 11,\r\n    \"wip\": 13,\r\n    \"arm\": 1,\r\n    \"bts\": 0,\r\n    \"w\": 1,\r\n    \"props\": \"Cube, Fireteam: Tohaa\",\r\n    \"weapons\": \"Combi Rifle, Pistol, Knife\",\r\n    \"alive\": true\r\n  },\r\n  \"triad 2\",\r\n  {\r\n    \"spec\": \"Makaul - Swarm\",\r\n    \"regular\": true,\r\n    \"impetuous\": true,\r\n    \"type\": \"WB\",\r\n    \"pts\": 18,\r\n    \"swc\": 0,\r\n    \"mov\": \"4-4\",\r\n    \"cc\": 19,\r\n    \"bs\": 11,\r\n    \"ph\": 13,\r\n    \"wip\": 13,\r\n    \"arm\": 1,\r\n    \"bts\": -3,\r\n    \"w\": 1,\r\n    \"props\": \"Cube, Fireteam: Tohaa, Impetuous, Martial Arts L2, i-Kohl L1\",\r\n    \"weapons\": \"Swarm Grenades, Zero-V Smoke Grenades, Heavy Flamethrower, Pistol, Viral CCW\",\r\n    \"alive\": true\r\n  },\r\n  {\r\n    \"spec\": \"Makaul - Flamer\",\r\n    \"regular\": true,\r\n    \"impetuous\": true,\r\n    \"type\": \"WB\",\r\n    \"pts\": 15,\r\n    \"swc\": 0,\r\n    \"mov\": \"4-4\",\r\n    \"cc\": 19,\r\n    \"bs\": 11,\r\n    \"ph\": 13,\r\n    \"wip\": 13,\r\n    \"arm\": 1,\r\n    \"bts\": -3,\r\n    \"w\": 1,\r\n    \"props\": \"Cube, Fireteam: Tohaa, Impetuous, Martial Arts L2, i-Kohl L1\",\r\n    \"weapons\": \"Zero-V Smoke Grenades, Heavy Flamethrower, Pistol, Viral CCW\",\r\n    \"alive\": true\r\n  },\r\n  {\r\n    \"spec\": \"Makaul - Flamer\",\r\n    \"regular\": true,\r\n    \"impetuous\": true,\r\n    \"type\": \"WB\",\r\n    \"pts\": 15,\r\n    \"swc\": 0,\r\n    \"mov\": \"4-4\",\r\n    \"cc\": 19,\r\n    \"bs\": 11,\r\n    \"ph\": 13,\r\n    \"wip\": 13,\r\n    \"arm\": 1,\r\n    \"bts\": -3,\r\n    \"w\": 1,\r\n    \"props\": \"Cube, Fireteam: Tohaa, Impetuous, Martial Arts L2, i-Kohl L1\",\r\n    \"weapons\": \"Zero-V Smoke Grenades, Heavy Flamethrower, Pistol, Viral CCW\",\r\n    \"alive\": true\r\n  },\r\n  \"loner\",\r\n  {\r\n    \"spec\": \"Ectros - Lt\",\r\n    \"header\": \"active symbiont armor\",\r\n    \"regular\": true,\r\n    \"impetuous\": false,\r\n    \"type\": \"HI\",\r\n    \"pts\": 50,\r\n    \"swc\": 0,\r\n    \"mov\": \"4-4\",\r\n    \"cc\": 17,\r\n    \"bs\": 13,\r\n    \"ph\": 14,\r\n    \"wip\": 13,\r\n    \"arm\": 3,\r\n    \"bts\": -6,\r\n    \"w\": 2,\r\n    \"props\": \"Cube, Fireteam: Tohaa, Poison, Symbiont Armor\",\r\n    \"weapons\": \"Viral Combi Rifle, Nanopulser, Pistol, CCW\",\r\n    \"secondStatLine\": {\r\n      \"header\": \"inactive symbiont armor\",\r\n      \"mov\": \"4-4\",\r\n      \"cc\": 17,\r\n      \"bs\": 12,\r\n      \"ph\": 11,\r\n      \"wip\": 13,\r\n      \"arm\": 0,\r\n      \"bts\": 0,\r\n      \"w\": 1\r\n    },\r\n    \"alive\": true\r\n  },\r\n  {\r\n    \"spec\": \"Chaksa - HMG\",\r\n    \"regular\": true,\r\n    \"impetuous\": false,\r\n    \"type\": \"LI\",\r\n    \"pts\": 25,\r\n    \"swc\": 1,\r\n    \"mov\": \"4-4\",\r\n    \"cc\": 14,\r\n    \"bs\": 11,\r\n    \"ph\": 12,\r\n    \"wip\": 13,\r\n    \"arm\": 0,\r\n    \"bts\": 0,\r\n    \"w\": 1,\r\n    \"props\": \"Poison, V: Courage, 360\u00B0 Visor, Neurocinetics\",\r\n    \"weapons\": \"HMG, Pistol, CCW\",\r\n    \"alive\": true\r\n  },\r\n  {\r\n    \"spec\": \"Chaksa - HMG\",\r\n    \"regular\": true,\r\n    \"impetuous\": false,\r\n    \"type\": \"LI\",\r\n    \"pts\": 25,\r\n    \"swc\": 1,\r\n    \"mov\": \"4-4\",\r\n    \"cc\": 14,\r\n    \"bs\": 11,\r\n    \"ph\": 12,\r\n    \"wip\": 13,\r\n    \"arm\": 0,\r\n    \"bts\": 0,\r\n    \"w\": 1,\r\n    \"props\": \"Poison, V: Courage, 360\u00B0 Visor, Neurocinetics\",\r\n    \"weapons\": \"HMG, Pistol, CCW\",\r\n    \"alive\": true\r\n  }\r\n]';
+
+        localStorage.setItem("iald.army", dumpArmyAsText());
+
+}   
+
+
+    </script>
+</head>
+
+<body>
+    <div id="armylist">
+    <!-- create this dynamical -->
+    </div>
+
+    <!-- footer -->
+    <!--#include virtual="./footer.html" -->
+</body>
+</html>

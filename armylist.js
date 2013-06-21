@@ -223,11 +223,11 @@ function htmlUnit(_unit, _stats, index) {
 		active = _unit.alive;
 
 		if(_unit.regular)
-			icons = "<a href = 'http://infinitythegame.wikispot.org/Instruction?action=show' class='imgLink'><img src='icons/regular_icon.png' width='24px' height='24px'></a>";
+			icons = "<a href = 'http://infinitythegame.wikispot.org/Instruction?action=show' class='imgLink'><img src='http://www.bastian-dornauf.de/iald/icons/regular_icon.png' width='24px' height='24px'></a>";
 		else
-			icons = "<a href = 'http://infinitythegame.wikispot.org/Instruction?action=show' class='imgLink'><img src='icons/irregular_icon.png' width='24px' height='24px'></a>";
+			icons = "<a href = 'http://infinitythegame.wikispot.org/Instruction?action=show' class='imgLink'><img src='http://www.bastian-dornauf.de/iald/icons/irregular_icon.png' width='24px' height='24px'></a>";
 		if(_unit.impetuous)
-			icons += " <a href = 'http://infinitythegame.wikispot.org/Fury?action=show' class='imgLink'><img src='icons/impetuous_icon.png' width='24px' height='24px'></a> ";
+			icons += " <a href = 'http://infinitythegame.wikispot.org/Fury?action=show' class='imgLink'><img src='http://www.bastian-dornauf.de/iald/icons/impetuous_icon.png' width='24px' height='24px'></a> ";
 
 		if(active) {
 			_stats.activePts += pts;

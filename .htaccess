@@ -1,4 +1,1 @@
-AddType text/html .html
-AddHandler server-parsed .html
 DirectoryIndex index.html 
-Options +IncludesNoExec -ExecCGI

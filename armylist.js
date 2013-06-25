@@ -4,12 +4,12 @@ $(document).ready(function () {
 	if(! html5StorageSupported() )
 		alert("Your browser does not support HTML5 webstorage.\nIALD will not work properly in this browser.\nSorry.");
 
-	if(storageGet('displayWeapons') === null)
+	if(storageGet('displayWeapons', true) === null)
 		storageSet('displayWeapons', true);
-	if(storageGet('displayEdit') === null)
+	if(storageGet('displayEdit', false) === null)
 		storageSet('displayEdit', false);
 
-	data = storageGet("army");
+	data = storageGet("army", null);
 	if(data == null)
 		data = dumpArmyAsText();
 	armylistContent = data;
@@ -20,7 +20,7 @@ $(document).ready(function () {
 			if("import" in $.getUrlVars())
 				if($.getUrlVar('import').toLowerCase() === "aleph") {
 					armylistContent = importArmyFromAleph($.getUrlVar('list'));
-					storageGet("army", armylistContent);
+					storageSet("army", armylistContent);
 				} else {
 					alert("The URL contains a list but the import source is unknown.");
 				} else
@@ -41,8 +41,8 @@ function updateHTML() {
 	var d = document;
 	d.getElementById("armylist")
 		.innerHTML = updateArmyList();
-	hideUnitWpn(storageGet("displayWeapons"));
-	hideLoadbox(storageGet("displayEdit"));
+	hideUnitWpn(storageGet("displayWeapons", true));
+	hideLoadbox(storageGet("displayEdit", false));
 }
 
 function registerEvents() {
@@ -61,6 +61,9 @@ function performClick() {
 		armylistContent = importArmy();
 		storageSet("army", armylistContent);
 		rebuild = true;
+	} else 	if(id == "importLink") {
+		var url = document.getElementById("armyImport").value;
+		importArmyFromLink(url);
 	} else if(id == "reset") {
 		armylistContent = dumpArmyAsText();
 		storageSet("army", armylistContent);
@@ -76,12 +79,13 @@ function performClick() {
 			units[index].alive = !units[index].alive;
 		storageSet("army", units);
 	}
+
 	updateHTML(rebuild);
 	registerEvents();
 }
 
 function performLoadClick() {
-	display = ! storageGet("displayEdit");
+	display = ! storageGet("displayEdit", false);
 	storageSet("displayEdit", display);
 	if(!display) {
 		armylistContent = JSON.parse(document.getElementById("armyImport").value);
@@ -132,7 +136,7 @@ function toBoolean(a) {
 */ 
 
 function tglWeapons() {
-	display = ! storageGet("displayWeapons");
+	display = ! storageGet("displayWeapons", true);
 	storageSet("displayWeapons", display);
 	hideUnitWpn(display);
 }
@@ -155,7 +159,7 @@ function updateArmyList() {
 		htmlArmyList.push(htmlUnit(units[index], armyStats, index));
 	}
 
-	return htmlListOpen(armyStats) + htmlArmyList.join(" ");
+	return htmlListOpen(armyStats) + htmlArmyList.join(" ")+"</ul>";
 }
 
 function htmlListOpen(armyStats) {
@@ -172,14 +176,16 @@ function htmlListOpen(armyStats) {
 		'<a href="help.html" class="imgLink" title="open help page"><button id="help">help</button></a>' +
 		'<div class="screen">' + text + '</div></div>' +
 		'<div id="loadbox">Enter the army list here - either as Export from iaAleph or as manually entered JSON. If you enter invalid JSON your changes will get lost (click several time on updateArmy-button until it works again ;) See the help page for more infos about editing.<br>The reset-button loads a default army list - be careful, there is no safety question. Download allows you to save the army data as text file.<br>' +
-		'<br>I have finished a way to import army lists from <a href="http://anyplace.it/ia/">ia Aleph</a>. Just copy the list that is shown when you click export in aleph. Then paste the list into the army editor field here and click IMPORT. Voila. I hope it works fine!<br><br>' +
+		'<br>I have finished a way to import army lists from <a href="http://anyplace.it/ia/">ia Aleph</a>.'+
+		' Copy-paste the link from the aleph export window and click FROM LINK or copy the list that is shown when you click export in aleph then paste the list into the army editor field here and click IMPORT. Voila. I hope it works fine!<br><br>' +
 		'<textarea id="armyImport" rows="10" cols="60">' +
 		JSON.stringify(armylistContent, null, "\t") +
 		'</textarea><br>' +
 		'<button id="import" title="imports an army">import</button>' +
+		'<button id="importLink" title="imports an army from a link">from link</button>' +
 		'<button id="reset" title="reset army to example">reset</button>' +
 		'<button id="download" title="download current army as text file">download</button>' +
-		'</div>';
+		'</div><ul data-role="listview" data-inset="true" data-filter="true">';
 }
 
 function onDownload() {
@@ -243,6 +249,7 @@ function htmlUnit(_unit, _stats, index) {
 		else {
 			output += '<div class="active" id="act' + index + '">';
 		}
+//		output += '<div class="unit"  draggable="true"><div class="unitName">';
 		output += '<div class="unit"><div class="unitName">';
 
 		//NAME and COST
@@ -577,12 +584,88 @@ function html5StorageSupported() {
 	return ('localStorage' in window) && window['localStorage'] !== null;  
 }  
 
-function storageGet(key) {
-	console.log("ws.get -> "+key);
-	return JSON.parse(localStorage.getItem("iald."+key));  	
+function storageGet(key, defV) {
+//	console.log("ws.get -> "+key);
+	var result = localStorage.getItem("iald."+key);
+	var IS_JSON = true;
+       try
+       {
+               var json = $.parseJSON(result);
+       }
+       catch(err)
+       {
+               IS_JSON = false;
+       }   
+       if (IS_JSON)
+    	   return json;
+	   else {
+		alert("An error might have happened.\nData from storage = "+result+"\nuse default instead = "+defV);
+       	   return defV;
+       	   }  
 }
 
 function storageSet(key, value) {
-	console.log("ws.set -> "+key);
-	return localStorage.setItem("iald."+key, JSON.stringify(value));  	
+	//	console.log("ws.set -> "+key);
+	return localStorage.setItem("iald."+key, JSON.stringify(value));  
 }
+
+function gotGooglResponse(data) {
+	alert(data);
+	importArmyFromLink(data.longUrl);
+
+}
+
+function importArmyFromLink(input) {
+	// check if its from goo.gl
+	if(input.indexOf('goo.gl') !== -1)
+	{
+		$.ajax({
+		  	url: 	'https://www.googleapis.com/urlshortener/v1/url',
+  			data: 	{
+  						key: 'AIzaSyC_cFnn6Ync9iMl8njqsvmhDSlfkTzqjlY',
+  						shortUrl: input
+  					},
+		  			success: gotGooglResponse
+//  			, error: gotGooglResponse			
+		});
+	} else if(input.indexOf('anyplace.it') !== -1) {
+		result = importArmyFromAleph(input);
+
+		alert("import from aleph returns = "+JSON.stringify(result));
+		armylistContent = result;
+		storageSet("army", armylistContent);
+		rebuild = true;
+		updateHTML(rebuild);
+		registerEvents();
+	}
+	else {
+		alert("no valid link found");
+		return null;
+	}
+}
+
+// Read a page's GET URL variables and return them as an associative array.
+function getUrlVars(url)
+{
+    var vars = [], hash;
+    var hashes = url.slice(url.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+/*
+function handleDragStart(e) {
+  this.style.opacity = '0.4';  // this / e.target is the source node.
+}
+
+var cols = document.querySelectorAll('#unit .unit');
+[].forEach.call(cols, function(col) {
+  col.addEventListener('dragstart', handleDragStart, false);
+});	
+
+
+*/

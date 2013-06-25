@@ -501,6 +501,9 @@ function findUnitByISCAndCode(isc, code) {
 }
 
 function decode_base64(s) {
+	return atob(s);
+
+
 	var e = {}, i, k, v = [],
 		r = '',
 		w = String.fromCharCode;
@@ -532,13 +535,24 @@ function decode_base64(s) {
 }
 
 function getJSONfromURL(url) {
-	return JSON.parse(
-		decode_base64(
-			unescape(
-				url.replace(/^.*list=/, '')
-			).replace(/[%]../g, '').replace(/_/g, '/').replace(/-/g, '+').replace(/[.:]/g, '=').replace(/[^a-zA-Z0-9+\/=]/g, '')
-		)
-	);
+	var _url = url.replace(/^.*list=/, '');
+	_url = decodeURI(_url);
+	_url = _url.replace(/[%]../g, '').replace(/_/g, '/').replace(/-/g, '+').replace(/[.:]/g, '=').replace(/[^a-zA-Z0-9+\/=]/g, '');
+	_url = decode_base64(_url);
+
+	var IS_JSON = true;
+	try {
+		var json = $.parseJSON(_url);
+	}
+	catch(err) {
+		alert("Error while reading JSON from URL: "+err+"\n\n"+url+"\n\n"+_url);
+		IS_JSON = false;
+	}	   
+
+	if(IS_JSON)
+		return json;
+	else
+		return null;
 }
 
 function searchArray(key, needle, haystack, case_insensitive) {
@@ -585,7 +599,6 @@ function html5StorageSupported() {
 }  
 
 function storageGet(key, defV) {
-//	console.log("ws.get -> "+key);
 	var result = localStorage.getItem("iald."+key);
 	var IS_JSON = true;
        try
@@ -654,15 +667,3 @@ function getUrlVars(url)
     }
     return vars;
 }
-/*
-function handleDragStart(e) {
-  this.style.opacity = '0.4';  // this / e.target is the source node.
-}
-
-var cols = document.querySelectorAll('#unit .unit');
-[].forEach.call(cols, function(col) {
-  col.addEventListener('dragstart', handleDragStart, false);
-});	
-
-
-*/

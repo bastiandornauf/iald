@@ -610,9 +610,7 @@ function storageSet(key, value) {
 }
 
 function gotGooglResponse(data) {
-	alert(data);
 	importArmyFromLink(data.longUrl);
-
 }
 
 function importArmyFromLink(input) {
@@ -626,12 +624,11 @@ function importArmyFromLink(input) {
   						shortUrl: input
   					},
 		  			success: gotGooglResponse
-//  			, error: gotGooglResponse			
 		});
 	} else if(input.indexOf('anyplace.it') !== -1) {
 		result = importArmyFromAleph(input);
 
-		alert("import from aleph returns = "+JSON.stringify(result));
+//		alert("import from aleph returns = "+JSON.stringify(result));
 		armylistContent = result;
 		storageSet("army", armylistContent);
 		rebuild = true;

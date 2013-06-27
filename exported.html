@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>IALD export</title>
+    <meta name="viewport" content="width=device-width, initial-scale=.5"> 
+
+	<link rel="stylesheet" href="main.css"  type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="print.css" media="print">
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            data = sessionStorage.getItem("iald.exportedData");
+            document.getElementById("content").innerHTML = data;
+        });
+    </script>
+</head>
+
+<body>
+    <div id="content">
+    </div>
+</body>
+</html>

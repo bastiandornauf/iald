@@ -21,10 +21,18 @@ $(document).ready(function () {
 				if($.getUrlVar('import').toLowerCase() === "aleph") {
 					armylistContent = importArmyFromAleph($.getUrlVar('list'));
 					storageSet("army", armylistContent);
-				} else {
-					alert("The URL contains a list but the import source is unknown.");
-				} else
-					alert("The URL contains a list but the import source is not specified.");
+				} else 
+					if($.getUrlVar('import').toLowerCase() === "iald") {
+						armylistContent = JSON.parse(
+							decodeBU(
+									$.getUrlVar('list').replace(/\.\.\./g, '')
+						));
+						storageSet("army", armylistContent);
+					} else {
+						alert("The URL contains a list but the import source is unknown.");
+					}
+			else
+				alert("The URL contains a list but the import source is not specified.");
 		}
 	}
 
@@ -71,6 +79,8 @@ function performClick() {
 	} else if(id == "download") {
 		onDownload();
 
+	} else if(id == "export") {
+		exportCurrentArmy();
 	} else if(id == "help") {
 		return;
 	} else {
@@ -184,8 +194,10 @@ function htmlListOpen(armyStats) {
 		'<button id="import" title="imports an army">import</button>' +
 		'<button id="importLink" title="imports an army from a link">from link</button>' +
 		'<button id="reset" title="reset army to example">reset</button>' +
-		'<button id="download" title="download current army as text file">download</button>' +
+		'<button id="export" title="export">export</button>' +
 		'</div><ul data-role="listview" data-inset="true" data-filter="true">';
+//		'<button id="download" title="download current army as text file">download</button>' +
+
 }
 
 function onDownload() {
@@ -503,7 +515,7 @@ function findUnitByISCAndCode(isc, code) {
 function decode_base64(s) {
 	return atob(s);
 
-
+/* ******************************************************
 	var e = {}, i, k, v = [],
 		r = '',
 		w = String.fromCharCode;
@@ -532,6 +544,7 @@ function decode_base64(s) {
 		}
 	}
 	return r;
+****************************************************** */
 }
 
 function getJSONfromURL(url) {
@@ -666,4 +679,51 @@ function getUrlVars(url)
         vars[hash[0]] = hash[1];
     }
     return vars;
+}
+
+function copyToClipboard (text) {
+  window.prompt ("To copy to clipboard press: Ctrl+C, Enter", encodeURI(text));
+}
+
+function displayInNewWindow(output) {
+//    document.getElementById("exportField").innerHTML = output;
+	copyToClipboard(output);
+}
+
+function exportCurrentArmy() {
+	content = document.getElementById("armyImport").value;
+	console.log(JSON.stringify(armylistContent, null, " "));
+	link = window.location + "?import=iald&list=" + encodeBU(JSON.stringify(armylistContent, null, ""));
+/*
+	output.push("<h1>Content of editor field:</h1>");
+	output.push("<p><code>");
+	output.push(content);
+	output.push("</code></p>");
+
+	output.push("<h1>armylist data object:</h1>");
+	output.push("<p><code>");
+	output.push(JSON.stringify(armylistContent, null, "    "));
+	output.push("</code></p>");
+
+	output.push("<h1>base64-encoded:</h1>");
+	output.push("<p><code>");
+	output.push(btoa(armylistContent));
+	output.push("</code></p>");
+*/
+	displayInNewWindow(link);
+}
+
+function encodeBU (s) {
+	return btoa(encode_utf8(s));
+}
+function decodeBU (s) {
+	return decode_utf8(atob(s));
+}
+
+function encode_utf8( s ) {
+  return unescape( encodeURIComponent( s ) );
+}
+
+function decode_utf8( s ) {
+  return decodeURIComponent( escape( s ) );
 }

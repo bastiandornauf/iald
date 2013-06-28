@@ -33,16 +33,11 @@ $(document).ready(function () {
 		}
 	}
 
-	updateHTML();
+	updatePage();
 	registerEvents();
-	/*
-        // show Base64 encoded version of army
-        // is said to work in FF and C only
-        alert(btoa(armylistContent));
-*/
 });
 
-function updateHTML() {
+function updatePage() {
 	var d = document;
 	d.getElementById("armylist")
 		.innerHTML = updateArmyList();
@@ -89,7 +84,7 @@ function performClick() {
 		storageSet("army", units);
 	}
 
-	updateHTML(rebuild);
+	updatePage(rebuild);
 	registerEvents();
 }
 
@@ -99,9 +94,9 @@ function performLoadClick() {
 	if(!display) {
 		armylistContent = JSON.parse(document.getElementById("armyImport").value);
 		storageSet("army", armylistContent);
-		updateHTML(true);
+		updatePage(true);
 	} else
-		updateHTML(false);
+		updatePage(false);
 	registerEvents();
 }
 
@@ -136,13 +131,6 @@ function hideLoadbox(visible) {
 			.innerHTML = "edit army";
 	}
 }
-
-/* deprec
-
-function toBoolean(a) {
-	return String(a).toLowerCase() === 'true';
-}
-*/
 
 function tglWeapons() {
 	display = !storageGet("displayWeapons", true);
@@ -195,15 +183,6 @@ function htmlListOpen(armyStats) {
 		'<button id="reset" title="reset army to example">reset</button>' +
 		'<button id="export" title="export">export</button>' +
 		'</div><ul data-role="listview" data-inset="true" data-filter="true">';
-
-	//		'<button id="download" title="download current army as text file">download</button>' +
-
-}
-
-function onDownload() {
-	document.location = 'data:Application/octet-stream;filename=armylist.txt,' +
-		encodeURIComponent(localStorage.getItem("iald.army"));
-
 }
 
 function htmlUnit(_unit, _stats, index) {
@@ -273,11 +252,6 @@ function htmlUnit(_unit, _stats, index) {
 
 			if("header" in _unit)
 				output += "<h2>" + _unit.header + "</h2>";
-			/*
-	else
-		output += "<h2>"+_unit.isc+"</h2>";
-*/
-
 			output += statBox(mov, cc, bs, ph, wip, arm, bts, w, 1);
 
 			if("secondStatLine" in _unit) {
@@ -648,12 +622,10 @@ function importArmyFromLink(input) {
 		});
 	} else if(input.indexOf('anyplace.it') !== -1) {
 		result = importArmyFromAleph(input);
-
-		//		alert("import from aleph returns = "+JSON.stringify(result));
 		armylistContent = result;
 		storageSet("army", armylistContent);
 		rebuild = true;
-		updateHTML(rebuild);
+		updatePage(rebuild);
 		registerEvents();
 	} else {
 		alert("no valid link found");
@@ -662,7 +634,6 @@ function importArmyFromLink(input) {
 }
 
 // Read a page's GET URL variables and return them as an associative array.
-
 function getUrlVars(url) {
 	var vars = [],
 		hash;
@@ -676,11 +647,10 @@ function getUrlVars(url) {
 }
 
 function copyToClipboard(text) {
-	window.prompt("To copy to clipboard press: Ctrl+C, Enter", encodeURI(text));
+	window.prompt("This link loads IALD and imports the current army.\nTo copy to clipboard press: Ctrl+C, Enter", encodeURI(text));
 }
 
 function displayInNewWindow(output) {
-	//    document.getElementById("exportField").innerHTML = output;
 	copyToClipboard(output);
 }
 
@@ -731,7 +701,6 @@ function shortenArmyList(list) {
 			newList.push(unit);
 		}
 	}
-	console.log(JSON.stringify(newList));
 	return newList;
 }
 
@@ -758,13 +727,3 @@ function importArmyFromIALD(data) {
 	}
 	return output;
 }
-
-
-
-/* http://iald.peoplecoveredinfish.de/?import=iald&list=W3siaW1wb3J0VGhpcyI6IlNh
-a2llbCBWaXJhbCJ9LHsiaW1wb3J0VGhpcyI6IkthbWFlbCBDb21iaSJ9LHsiaW1wb3J0VGhpcyI6Ikth
-bWFlbCBDb21iaSJ9LHsiaW1wb3J0VGhpcyI6IkF1eGlsaWFyIEhNRyJ9LHsiaW1wb3J0VGhpcyI6IkF1
-eGlsaWFyIEhNRyJ9LHsiaW1wb3J0VGhpcyI6Ik1ha2F1bCBTd2FybSJ9LHsiaW1wb3J0VGhpcyI6Ik1h
-a2F1bCBGbGFtZXIifSx7ImltcG9ydFRoaXMiOiJFY3Ryb3MgTHQifV0=
-
-*/

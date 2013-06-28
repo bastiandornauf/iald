@@ -18,7 +18,6 @@ html {
 button {
 	font-family: Orbitron, Helvetica, Arial, sans-serif;
 
-
 	background: #363;
 	color: #fff;
 	border-radius: 10px;
@@ -36,6 +35,20 @@ button:hover {
 	background: #633;
 }
 
+#exclusiveCard
+{
+	width: 100%;
+	height: auto;
+	margin: 0px auto;
+	padding: 9px;
+	background: #9dd2ea;
+	background: linear-gradient(#9dd2ea, #8bceec);
+	border-radius: 10px;
+	box-shadow: 0px 2px #009de4, 0px 10px 15px rgba(0, 0, 0, 0.5);
+	display: none;
+}
+
+
 #cardList {
 	width: 100%;
 	height: auto;
@@ -45,6 +58,7 @@ button:hover {
 	background: linear-gradient(#9dd2ea, #8bceec);
 	border-radius: 10px;
 	box-shadow: 0px 2px #009de4, 0px 10px 15px rgba(0, 0, 0, 0.5);
+	display:block;
 }
 
 
@@ -118,10 +132,30 @@ a:hover {
 	color:#FFF;
 }
 
+#help {
+	font-size: 15pt;
+	display:none;
+	padding: 2em;
+	margin: .5em;
+	border:5px solid #c81931;
+	border-radius: 10px;
+
+}
+
+#help ul, li { 
+	list-style: disc; 
+	font-size: 15pt;
+	padding-left: 0.6em; 
+	margin-left: 0.6em; 
+} 
+
 #rules {
 	font-size: 15pt;
 	display:none;
 	padding: 2em;
+	margin: .5em;
+	border:5px solid #7cba4f;
+	border-radius: 10px;
 }
 
 #rules ul, li { 
@@ -147,6 +181,12 @@ a:hover {
 	padding-bottom: .5em;
 	width: 90%;
 	margin: 0 auto;
+}
+
+.icon {
+	height: 48px;
+	width: 48px;
+	vertical-align:middle;
 }
 
 h1 {

@@ -2,7 +2,9 @@ var yamsInfo = {
 	name: "YAMS",
 	link: "http://wargamingtrader.com/yams",
 	version: "1.1",
-	rules: "<h2>Setup Sequence:</h2><ul><li>Choose lists.</li><li>Draw 6 and discard 2 mission cards.</li><li>Roll off for Initiative v. Deploy.</li><li>Place the Civvie and crate d20&Prime; in from opposite table edges.</li><li>Deploy including flags, no deployment within ZoC of Civvie or crate.</li><li>Double-or-Quits, start first turn.</li></ul>"
+	rules: "<h2>Setup Sequence:</h2><ul><li>Choose lists.</li><li>Draw 6 and discard 2 mission cards.</li><li>Roll off for Initiative v. Deploy.</li><li>Place the Civvie and crate d20&Prime; in from opposite table edges.</li><li>Deploy including flags, no deployment within ZoC of Civvie or crate.</li><li>Double-or-Quits, start first turn.</li></ul>",
+	draw: 6,
+	keep: 4
 };
 
 var assessTable = "";
@@ -18,6 +20,7 @@ var assessTable = "";
 var yamsCardStack = [
 	{
 		title: "Catch the pigeon!",
+		icon : "http://game-icons.net/icons/lorc/originals/png/bird-twitter.png",
 		color: "755ba2",
 		objective: "have the Civvie controlled by one of your active models via Ghost: Synchronised at the end of the game.",
 		conditions: "remember that the Civvie becomes a target for AROs and deployables once it is synched.",

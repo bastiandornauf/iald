@@ -1,12 +1,12 @@
 var stack = new Array();
-var date;
+var date = new Date;
 var keepCards = yamsInfo.keep;
 var numberOfDrawnCards = yamsInfo.draw;
 var exclusiveMode = true;
 var exclusiveCard = 0;
 
 $(document).ready(function () {
-	stack = getStack();
+	stack = welcomeStack;
 	document.getElementById("rules").innerHTML = yamsInfo.rules;
 	updatePage();
 });
@@ -30,7 +30,7 @@ function drawAction() {
 
 function updatePage() {
 	document.getElementById("cardList").innerHTML = 
-		"<h1>MobileYams based on "+yamsInfo.name+" "+yamsInfo.version+"</h1>"+
+		"<h1>MobileYAMS based on "+yamsInfo.name+" "+yamsInfo.version+"</h1>"+
 		"<p class='timestamp'>these cards have been drawn at<br>"+date.toLocaleString()+"</p>"+
 		createHTMLCardList();
 	updateExclusiveCard();
@@ -125,11 +125,16 @@ function createHTMLCard(_card, index, showButton) {
 		img = "";
 	output.push("<div class='card'>");
 	output.push("<div class='cardHeader' data-index='"+index+"' style='background-color:#"+_card.color+"'>"+img+_card.title+"</div>");
-	if('fluff' in _card)
+	if('fluff' in _card && _card.fluff != "")
 		output.push("<div class='cardFluff'>"+_card.fluff+"</div>");
-	output.push("<div class='cardItem'><span class='bold'>Objective:</span> "+_card.objective+"</div>");
-	output.push("<div class='cardItem'><span class='bold'>Conditions:</span> "+_card.conditions+"</div>");
-	output.push("<div class='cardItem'><span class='bold'>Reveal:</span> "+_card.reveal+"</div>");
+	if('text' in _card && _card.text != "")
+		output.push("<div class='cardText'>"+_card.text+"</div>");
+	if('objective' in _card && _card.objective != "")
+		output.push("<div class='cardItem'><span class='bold'>Objective:</span> "+_card.objective+"</div>");
+	if('conditions' in _card && _card.conditions != "")
+		output.push("<div class='cardItem'><span class='bold'>Conditions:</span> "+_card.conditions+"</div>");
+	if('reveal' in _card && _card.reveal != "")
+		output.push("<div class='cardItem'><span class='bold'>Reveal:</span> "+_card.reveal+"</div>");
 	if(showButton)
 		output.push("<button id='discardButton"+index+"'  class='btn'>discard</button>");
 	output.push("</div>");

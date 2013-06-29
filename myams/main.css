@@ -2,15 +2,14 @@
 * {
 	margin: 0;
 	padding: 0;
-
-
 	font: 16px Lucida Sans, Belleza, sans-serif;
 	box-sizing: border-box;
+	text-rendering: optimizeLegibility;
 }
 
 html {
 	height: 100%;
-	background: white;
+	background: #fff;
 	background: radial-gradient(circle, #fff 20%, #ccc);
 	background-size: cover;
 }
@@ -29,6 +28,12 @@ button {
 	width: 100px;
 	margin: 5px;	
 	font-size: .8em;
+
+
+    -webkit-transition: color 0.6s ease 0s; 
+    -moz-transition: color 0.6s ease 0s;
+    -o-transition: color 0.6s ease 0s;  
+    transition: color 0.6s ease 0s;
 }
 
 button:hover {
@@ -67,8 +72,11 @@ button:hover {
 	width: 98%;
 	margin: 1em  auto 1em;
 	padding: .5em .5em;
-	background: #fff;
-	background: linear-gradient(#fff, #ddd);
+	background: #ddd;
+	background: linear-gradient(#fff, #ccc);
+	/*
+	url(icons/hex.png) ;
+	*/
 	border-radius: 10px;
 	box-shadow: 0px 2px #888, 0px 10px 15px rgba(0, 0, 0, 0.5);
 	clear:both;
@@ -79,15 +87,26 @@ button:hover {
 	color: #fff;
 	font-variant: small-caps;
 	font-weight: 700;
-	font-size: 30pt;
+	font-size: 24pt;
 	font-family: Orbitron, Helvetica, Arial, sans-serif;
 	border-radius:10px;
 	clear:both;
 	overflow: hidden;
+	vertical-align: middle;
 
-	padding: 0.2em;
+	padding: 8px 5px 3px 5px;
+	margin: 0px;
 }
 
+.cardText {
+	font-size: 16pt;
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	text-decoration:
+	clear:both;
+	overflow: hidden;
+}
 .cardFluff {
 	font-style:italic;
 	font-size: 16pt;
@@ -140,6 +159,9 @@ a:hover {
 	border:5px solid #c81931;
 	border-radius: 10px;
 
+	background: #ddd;
+	background: linear-gradient(#fff, #ccc);
+
 }
 
 #help ul, li { 
@@ -156,6 +178,10 @@ a:hover {
 	margin: .5em;
 	border:5px solid #7cba4f;
 	border-radius: 10px;
+
+	background: #ddd;
+	background: linear-gradient(#fff, #ccc);
+
 }
 
 #rules ul, li { 
@@ -184,21 +210,69 @@ a:hover {
 }
 
 .icon {
-	height: 48px;
-	width: 48px;
+	height: 64px;
+	width: 64px;
 	vertical-align:middle;
 }
 
 h1 {
-	color:rgba(0,0,0,0.6);
-	font-size:1.8em;
+	font-size:24pt;
 	font-weight:700;
-	margin:40px 0 5px;
+	margin: 10px ;
+	padding: 0;
 }
 
 h2 {
-	font-size:1.2em;
-	color:rgba(0,0,0,0.6);
+	font-size:18pt;
 	font-weight:700;
-	margin: .5em;
+	margin: 36px 5px 0px 5px;
+}
+
+h3 {
+	font-size:14pt;
+	font-weight:700;
+	margin: 28px 5px 0px 5px;
+}
+
+p {
+	font-size:14pt;
+	font-weight:400;
+	margin: 0px 5px 10px 5px;
+}
+
+.timestamp{
+	font-size:1.0em;
+	font-weight:400;
+	margin: 1em;
+}
+
+table {
+	font-size:70%;
+	text-align:center;
+
+	width:80%;
+    margin-left:10%; 
+    margin-right:10%;
+}
+
+th {
+	border-radius: 5px;
+	color: white;
+	font-weight: 700;
+	background-color: #4571b1;
+	padding: 5px;
+	margin: 4px;
+}
+td {
+	border-radius: 5px;
+	color: #000;
+	font-weight: 700;
+	background-color: #fff;
+	padding: 3px;
+	margin: 4px;
+}
+
+#menu {
+	background:#eee;
+	text-align: center;
 }

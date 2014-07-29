@@ -31,6 +31,8 @@ function importData() {
 		// pts + swc rely on childs
 
 		dUnit["type"] = sUnit["type"];
+		dUnit["army"] = sUnit["army"];
+		dUnit["ava"] = sUnit["ava"];
 
 		// stat block
 		for(var n=0; n<statsLength; n++) {

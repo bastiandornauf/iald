@@ -1,0 +1,121 @@
+* {
+	margin: 0;
+	padding: 0;
+	font: 16px Lucida Sans, Belleza, sans-serif;
+	box-sizing: border-box;
+	text-rendering: optimizeLegibility;
+}
+
+html
+{
+	height: 100%;
+	background: #fff;
+	background: radial-gradient(circle, #fff 20%, #ddd);
+	background-size: cover;
+}
+
+body {
+    font: normal 100% Helvetica, Arial, sans-serif;
+}
+#menu {
+	background:#eee;
+	text-align: center;
+}
+#btnReset {
+	width: 100px;
+}
+
+#fields {
+	width: 100%;
+	height: auto;
+	margin: 0px auto;
+	padding: 9px;
+	background: #9dd2ea;
+	background: -webkit-gradient(linear, left top, left bottom, from(#9dd2ea), to(#8bceec)) -webkit-linear-gradient(top, #9dd2ea, #8bceec) linear-gradient(#9dd2ea, #8bceec);
+	border-radius: 10px;
+	box-shadow: 0px 2px #009de4, 0px 10px 15px rgba(0, 0, 0, 0.5);
+	overflow:auto; 
+}
+	
+.field {	
+	float: left;
+	margin: .5em;
+	padding: .5em;
+	background: #fff;
+	background: linear-gradient(#fff, #ccc);
+	border-radius: 10px;
+	box-shadow: 0px 2px #888, 0px 10px 15px rgba(0, 0, 0, 0.5);
+
+    /* Width and height for each item */
+    width:215px;
+    height:225px;
+
+    /* Text align and background color */
+    text-align:center;
+    border: 1px solid #000;
+}
+
+.lbl {
+	margin: 5px auto;
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight: 700;
+	font-family: Orbitron, Helvetica, Arial, sans-serif;
+}
+
+
+.nr {
+	font-family: Orbitron, Helvetica, Arial, sans-serif;
+	margin: 10pt auto 0 auto;
+	text-align: center;
+	font-size: 6rem;
+}
+
+.btns {
+	width: 100%;
+	margin: 5px auto;
+	text-align: center;
+}
+
+.clearboth {
+	clear: both;
+}
+
+.center {
+	width: 100%;
+	text-align: center;
+	margin: 0px auto;
+	display: inline;
+}
+
+button {
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 5px;
+	font-size: 1.4rem;
+	background-color: green;
+	-webkit-border-fit: scale;
+	color:white;
+	font-weight: 400;
+	width: 80px;
+	height: 40px;
+}
+
+button:hover {
+	background: #633;
+}
+
+button {
+	background: #363;
+	color: #fff;
+	border-radius: 10px;
+	border: 0px;
+	height: 48px;
+	line-height: 1.2rem;
+	font-weight: 400;
+	margin: 10pt auto;
+	width: 48px;
+	font-size: 1.2rem;
+	vertical-align: center;
+	transition: color .5s;
+}

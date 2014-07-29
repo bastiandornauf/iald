@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Your random battlefield</title>	
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|PT+Serif:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+	<style type="text/css">
+		html {
+			font-family:Montserrat,sans-serif;
+
+			font-size:12pt;
+
+			line-height:17.5pt;
+			letter-spacing:.2pt;
+			background-color:#EEE;
+
+			text-ren­der­ing:optimizeLegibility
+		}
+
+		p {
+			margin-top:0;
+			margin-bottom:7pt;
+			padding:2px
+		}
+		table {
+			border: 0;
+			width: 600px;
+			height: 600px;
+			padding: 0;
+			margin: 0;
+
+		}
+		tr, td {
+			border: 0;
+			padding: 0;
+			margin: 0;
+
+		}
+		.tile {
+			border: 0;
+			width: 200px;
+			height: 200px;
+			padding: 0;
+			margin: 0;
+
+			display:block;
+			float:left;
+		}
+		.redline {
+			background-color:#c00;
+			height: 2px;
+			color: white;
+			text-align: center;
+			font-size: 8pt;
+			font-weight: 700;
+		}
+		.greenline {
+			float
+			background-color:#c00;
+			height: 2px;
+			color: white;
+			text-align: center;
+			font-size: 8pt;
+			font-weight: 700;
+		}
+	</style>
+
+</head>
+<body>
+<h1>Your random battlefield</h1>
+
+<table id="images">
+	<tr><td class="redline" colspan=3>deployment</td></tr>
+	<tr>
+		<td><img src="" class="tile" id="tile0" /></td>
+		<td><img src="" class="tile" id="tile1" /></td>
+		<td><img src="" class="tile" id="tile2" /></td>
+	</tr>
+	<tr>
+		<td><img src="" class="tile" id="tile3" /></td>
+		<td><img src="" class="tile" id="tile4" /></td>
+		<td><img src="" class="tile" id="tile5" /></td>
+	</tr>
+	<tr>
+		<td><img src="" class="tile" id="tile6" /></td>
+		<td><img src="" class="tile" id="tile7" /></td>
+		<td><img src="" class="tile" id="tile8" /></td>
+	</tr>
+	<tr><td class="redline" colspan=3>deployment</td></tr>
+</table>
+
+<hr>
+<div id="content"></div>
+
+
+<script type="text/javascript">
+
+window.onload = function() {
+	document.getElementById("content").innerHTML = generateRandomTable();
+}
+
+function generateRandomTable() {
+	output = [];
+	tiles = ['A1', 'B1', 'C1', 'D1', 'E1', 'A2', 'B2', 'C2', 'D2', 'E2'];
+	orientations = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
+
+	imageIndex = 0;
+	while(tiles.length > 1) {
+		tile = randomFrom(tiles);
+		removeFrom(tile, tiles);
+		orientation = randomFrom(orientations);
+		output.push("<li>"+tile+ " ("+orientation+")</li>");
+		
+		rotation = orientations.indexOf(orientation) * 90; //degree
+		filename = "img/"+tile.toLowerCase()+".png"
+		
+		$("#tile"+imageIndex).attr("src", filename);	
+		$("#tile"+imageIndex).attr("title", tile+" ("+orientation+")");	
+		$("#tile"+imageIndex).rotate(rotation);
+
+		imageIndex += 1; 
+	}
+	return "<ul>"+output.join(" ")+"</ul>"+"Unused tile = "+tiles[0];
+}
+
+function randomFrom(array) {
+   return array[Math.floor(Math.random() * array.length)];
+}
+
+function removeFrom(item, array) {
+	index = array.indexOf(item);
+	if(index > -1)
+		array.splice(index, 1);
+}
+
+(function( $ ){
+$.fn.rotate = function(deg) {
+    this.css({'transform': 'rotate('+deg+'deg)'});
+    this.css({'-ms-transform': 'rotate('+deg+'deg)'});
+    this.css({'-moz-transform': 'rotate('+deg+'deg)'});
+    this.css({'-o-transform': 'rotate('+deg+'deg)'}); 
+    this.css({'-webkit-transform': 'rotate('+deg+'deg)'});
+    return this; 
+};
+})( jQuery );
+</script> </body>
+</html>

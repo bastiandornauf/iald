@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Mobile YAMS</title>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=.5" name="viewport">
+        <link href="main.css" media="screen" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Belleza' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Orbitron:400,700' rel='stylesheet' type='text/css'>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+            <script src="myamsData.js" type="text/javascript"></script>
+            <script src="myamsCode.js" type="text/javascript"></script>
+        <!--- TO DO
+        - set draw- & discard-#
+        -->
+    </head>
+    <body>
+        <div class="dropdown">
+            <div id="menu">
+                <button id="buttonMenu">show menu</button>
+                <button id="buttonRules">rules</button>
+                <button id="buttonHelp">help</button>
+                <div class="collapse">
+                    <button id="buttonDraw">draw</button>
+                    <button id="buttonAllCards">all cards</button>
+                    <button id="buttonUndoDiscard" disabled>undo discard</button> &nbsp;&nbsp;
+                    <button id="buttonAdd">+</button>
+                    <button id="buttonSub">-</button> &nbsp;&nbsp;
+                    <button id="buttonMail">send hand</button>
+                    <button id="buttonFlip">flip cards</button>
+                    <button id="buttonStartGame">start game</button>
+                    <button id="buttonReset">reset</button>
+                    <button id="buttonSettings">settings</button>
+                    <fieldset id="fsSettings">
+                        <legend>settings</legend>
+                        Close settings panel to confirm changes.
+                        <ol>
+                            <li><label for="draw">Draw # cards</label><input type="number" name="draw" id="nrDraw" value="6" min="1" max="100"></li>
+                           <li><label for="discard">Discard # cards</label><input type="number" name="discard" id="nrDiscard" value="2"/ min="0" max="100"></li>
+                        </ol>
+                    </fieldset>
+                </div>
+            </div><!-- menu/dropdown -->
+        <div id="help">
+            <h2>How to use MobileYAMS</h2>
+            <h3>Advise - please read</h3>
+            <p>Different to my other project IALD this web tool does not store any data. So <em>when you reload the page your currently drawn cards will get lost</em>. While using it in a game you have to keep the window/tab open (in my experience you CAN change the browser tab or close the browser at all but YMMV)<br> I do plan to use webstorage in near future.</p>
+            <h3>What is with the date?</h3>
+            <p>This is thought as anti-cheating measure. Everytime you draw cards the time will be noted so your
+            opponent could see if you would have redrawn objectives at the end of the game.</p>
+            <h3>show / hide menu</h3>
+            <p>Obviously this will display/hide a menu where you find all the other important buttons.</p>
+            <h3>rules &amp; help</h3>
+            <p>Rules shows/hides the YAMS rules, help shows/hides this help text you are reading.</p>
+            <h3>draw</h3>
+            <p>This button will draw a hand of 6 cards from the shuffled YAMS deck. (number depending on your current settings)</p>
+            <h3>all cards</h3>
+            <p>This button will show all cards in the YAMS deck. You do not need this in a game</p>
+            <h3>undo discard</h3>
+            <p>A once discarded  card will again appear in your hand. (discard?? see below)</p>
+            <h3>+ &amp; -</h3>
+            <p>The plus and minus button allow you to count victory points. Its really just a simple counter.</p>
+            <h3>Send hand</h3>
+            <p>This button will open you email client and lets you send an email with a list of your current cards.</p>
+            <h3>Flip cards</h3>
+            <p>All cards are "flipped" and will only show their non-telling backsides.</p>
+            <h3>start game</h3>
+            <p>This will hide all game-breaking buttons.</p>
+            <h3>reset</h3>
+            <p>Since I'm planning to make mYAMS a persistent-state app (using web-storage technology so it remembers excactly how you left it) there will be a need to reset it to its basic state. Until now this does not do anything.<p>                    
+            <h3>settings</h3>
+            <p>This will open a panel where you can enter some settings. Right now thats the number of cards you draw and discard in your game. You apply those settings buy using the same button to close the panel again.</p>
+            <h3>discard</h3>
+            <p>This button is <em>located on each card</em> and will discard the card. When you have the allowed number of cards
+            in hand the discard button will disappear.</p>
+            <h3>hide all other cards</h3>
+            <p>A click on the card header will show this card exclusive and hide all other cards. This is useful to
+            show your opponent that you have this card and avoid him seeing your deck. Another click on the header will
+            bring the deck back.</p>
+        </div>
+        <div id="rules"></div>
+        <div id="victoryPoints"></div>
+        <div id="exclusiveCard"></div>
+        <div id="cardList"></div>
+        <div id="footer">
+            <p>MobileYAMS is a port of <a href="http://wargamingtrader.com/yams">YAMS</a> by <a href=
+            "http://wargamingtrader.com/">wargamingtrader</a><br>
+            for <a href="http://www.infinitythegame.com/infinity/">infinity the game</a> by <a href=
+            "http://www.corvusbelli.com">Corvus Belli</a> done by <a href='mailto:bdornauf@gmail.com'>Bastian Dornauf</a>.</p>
+        </div>
+    </div>
+    </body>
+</html>

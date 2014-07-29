@@ -1,4 +1,5 @@
 var units = new Array();
+var baggage = 0;
 
 $(document).ready(function () {
 	if(!html5StorageSupported())
@@ -152,6 +153,7 @@ function updateArmyList() {
 	}, htmlArmyList = new Array();
 
 	units = loadUnits();
+	baggage = 0;
 	for(var index = 0; index < units.length; index++) {
 		htmlArmyList.push(htmlUnit(units[index], armyStats, index));
 	}
@@ -160,7 +162,7 @@ function updateArmyList() {
 }
 
 function htmlListOpen(armyStats) {
-	var breakPoint = armyStats.pts * 0.4,
+	var breakPoint = armyStats.pts - Math.floor((armyStats.pts + baggage)* 0.6),
 		text = armyStats.activeUnits + "/" + armyStats.units + " models, " +
 			armyStats.activePts + "/" + armyStats.pts + "pts, " + armyStats.swc +
 			"SWC &mdash; break at " + Math.floor(breakPoint);
@@ -226,6 +228,11 @@ function htmlUnit(_unit, _stats, index) {
 		if(_unit.impetuous)
 			icons += " <a href = 'http://infinitythegame.wikispot.org/Fury?action=show' class='imgLink'><img src='http://www.bastian-dornauf.de/iald/icons/impetuous_icon.png' width='24px' height='24px'></a> ";
 
+		if(props.indexOf("Baggage") != -1) {
+			console.log("Someone has baggage! --> "+baggage);
+			baggage += 20;
+		}
+			
 		if(active) {
 			_stats.activePts += pts;
 			_stats.activeUnits++;

@@ -1,0 +1,29 @@
+✓ servant endless-loop
+
+shared AVA pool
+	- knightly orders
+	✓? caliban
+	✓ dog/cameronian
+	✓ sun tze
+	✓ joan
+
+take both
+	✓ margot/duroc
+	✓ scarface/cordelia
+	✓ zoe/pi-well
+
+g/sync
+	✓ devabot, spotbot, auxbot, chaksa per.
+
+like g/sync
+	✓ carlotta/moriarty
+
+weird ones:
+	✓ Imetrons/Netrods are no REMs
+	✓ REMs with G:Autotool (Ikadron Batroid) can be taken if G:Mnemonica is in list
+
+✓ if the Lieutenant is Irregular, then all figures in the army must be Irregular.
+
+✓ add options menu instead of hardcoded url-parameters
+
+✓ optimize output 
